@@ -1,0 +1,65 @@
+﻿@model GTravel.Domain.ViewModels.SelectListViewModel<GTravel.Domain.Attraction>
+@{
+    var title = "Create Attraction";
+    var Attraction = Model.Entity;
+
+}
+
+<form method="post" asp-action="Upsert">
+    <div class="row px-2 mx-2 backgroundWhite border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Attraction.Id != 0)
+        {
+            title = "Edit Attraction";
+        }
+        <div class="col-12">
+            <h2 class=" text-primary">@title</h2>
+            <br />
+
+
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="@Attraction.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Attraction.Name" class="form-control" />
+                        <span asp-validation-for="@Attraction.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="@Attraction.Description"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Attraction.Description" class="form-control" />
+                        <span asp-validation-for="@Attraction.Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="@Attraction.CityId">City</label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="@Attraction.CityId" asp-items="Model.SelectListItems">
+                            <option value="">--Select City--</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-4">
+                        @if (Attraction.Id != 0)
+                        {
+                            <partial name="_EditAndBackToListButton" model="@Attraction.Id" />
+                        }
+                        else
+                        {
+                            <partial name="_CreateAndBackToListButton" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

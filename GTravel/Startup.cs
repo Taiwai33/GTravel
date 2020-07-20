@@ -31,8 +31,19 @@ namespace GTravel
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddSession(o => {
+                o.IdleTimeout = TimeSpan.FromMinutes(30);
+                o.Cookie.HttpOnly = true;
+                o.Cookie.IsEssential = true;
+            });
+
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson()
+                .AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
 
@@ -62,7 +73,7 @@ namespace GTravel
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{areas=Customer}/{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
