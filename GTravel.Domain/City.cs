@@ -2,6 +2,7 @@
 
 namespace GTravel.Domain
 {
+    //public enum States { NSW , QLD, WA, SA, VIC, TAS, NT, ACT }
     public class City
     {
         public int Id { get; set; }

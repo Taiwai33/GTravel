@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using GTravel.Domain;
@@ -57,6 +58,8 @@ namespace GTravel.Areas.Admin.Controllers
             {
                 if (id == null)
                 {
+                    attraction.Name = ConvertToCamelCase(attraction.Name);
+
                     _db.Attractions.Add(attraction);
                 }
                 else
@@ -65,8 +68,8 @@ namespace GTravel.Areas.Admin.Controllers
 
                     dbAttraction.CityId = attraction.CityId;
                     dbAttraction.Description = attraction.Description;
-                    dbAttraction.Name = attraction.Name;
-                   
+                    dbAttraction.Name = ConvertToCamelCase(attraction.Name);
+
                     _db.Attractions.Update(dbAttraction);
                 }
                 await _db.SaveChangesAsync();
@@ -110,5 +113,10 @@ namespace GTravel.Areas.Admin.Controllers
         }
 
         #endregion
+        public string ConvertToCamelCase(string input)
+        {
+            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+            return myTI.ToTitleCase(input);
+        }
     }
 }

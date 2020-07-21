@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GTravel.Domain;
 using GTravel.Domain.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GTravel.Areas.Admin.Controllers
 {
@@ -44,7 +45,7 @@ namespace GTravel.Areas.Admin.Controllers
             {
                 if (id == null)
                 {
-                    city.Name = ConvertNameToCamelCase(city.Name);
+                    city.Name = ConvertToCamelCase(city.Name);
                     _db.Cities.Add(city);
                 }
                 else {
@@ -54,7 +55,7 @@ namespace GTravel.Areas.Admin.Controllers
                     dbCity.PostCode = city.PostCode;
                     dbCity.Latitude = city.Latitude;
                     dbCity.Longitude = city.Longitude;
-                    dbCity.Name = ConvertNameToCamelCase(city.Name);
+                    dbCity.Name = ConvertToCamelCase(city.Name);
                     
                    
                     _db.Cities.Update(dbCity);              
@@ -94,11 +95,12 @@ namespace GTravel.Areas.Admin.Controllers
         }
         #endregion
 
-        public string ConvertNameToCamelCase(string name)
+        public string ConvertToCamelCase(string input)
         {
             TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
-            return myTI.ToTitleCase(name);
+            return myTI.ToTitleCase(input);
         }
 
+       
     }
 }
