@@ -1,0 +1,88 @@
+﻿@model GTravel.Domain.City
+@{
+    var title = "Create";
+
+}
+
+@if (Model.Id != 0)
+{
+    title = "Update";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="City">Cities</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@title</li>
+    </ol>
+</nav>
+<form method="post" asp-action="Upsert">
+    <div class="row px-2 mx-2 backgroundWhite border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12">
+            <h2 class=" text-primary">@title City</h2>
+            <br />
+
+
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="@Model.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.Name" class="form-control" />
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="@Model.State"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.State" class="form-control" />
+                        <span asp-validation-for="@Model.State" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="@Model.PostCode">Post Code</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.PostCode" class="form-control" />
+                        <span asp-validation-for="@Model.PostCode" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="@Model.Latitude">Latitude</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.Latitude" class="form-control" />
+                        <span asp-validation-for="@Model.Latitude" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="@Model.Longitude">Longitude</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.Longitude" class="form-control" />
+                        <span asp-validation-for="@Model.Longitude" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-4">
+                        @if (Model.Id != 0)
+                        {
+                            <partial name="_EditAndBackToListButton" model="@Model.Id" />
+                        }
+                        else
+                        {
+                            <partial name="_CreateAndBackToListButton" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

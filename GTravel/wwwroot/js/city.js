@@ -9,34 +9,34 @@ function loadDataTable() {
 
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/admin/attraction/GetAll",
+            "url": "/admin/city/GetAll",
             "type": "GET",
             "datatype": "json"
         },
         "columns": [
-            { "data": "name", "width": "30%" },
-            { "data": "city", "width": "20%" },
+            { "data": "name", "width": "40%" },
             { "data": "state", "width": "10%" },
+            { "data": "postCode", "width": "10%" },
             {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                                <a href="/Admin/attraction/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:100px;'>
+                                <a href="/Admin/city/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:100px;'>
                             <i class='far fa-edit'></i>Edit
                                 </a>
                                 &nbsp;
-                                <a onclick=Delete("/Admin/attraction/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:100px;'>
+                                <a onclick=Delete("/Admin/city/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:100px;'>
                             <i class='far fa-trash-alt'></i>Delete
                                 </a>
                             </div>
                      `;
-                }, "width": "30%"
+                }, "width": "20%"
             }
         ],
         "language": {
             "emptyTable": "No Records Found"
         },
-        "width": "20%"
+        "width": "100%"
     });
 
 }

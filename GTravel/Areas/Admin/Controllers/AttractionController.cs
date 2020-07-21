@@ -7,6 +7,7 @@ using GTravel.Domain.Data;
 using GTravel.Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace GTravel.Areas.Admin.Controllers
 {
@@ -85,7 +86,12 @@ namespace GTravel.Areas.Admin.Controllers
 
         public IActionResult GetAll()
         {
-            return Json(new { data = _db.Attractions.ToList() });
+            return Json(new { data = _db.Attractions
+                .Include(a=>a.City)
+                .Select(a=> new { 
+                a.Id,a.Name, City = a.City.Name, State = a.City.State
+                })
+                .ToList() });
         
         }
 

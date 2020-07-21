@@ -1,14 +1,14 @@
 ﻿
 @{
-    var title = "Attractions";
+    var title = "Cities";
 }
 
 
 <br />
-<nav aria-label="breadcrumb" >
+<nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Attractions</li>
+        <li class="breadcrumb-item active" aria-current="page">Cities</li>
     </ol>
 </nav>
 <div class="border backgroundWhite p-3">
@@ -17,7 +17,7 @@
             <h3 class="text-primary">@title</h3>
         </div>
         <div class=" col-6 text-right">
-            <a asp-action="Upsert" class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp; Create new Attraction</a>
+            <a asp-action="Upsert" class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp; Add City</a>
         </div>
     </div>
 
@@ -27,8 +27,8 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>City</th>
                 <th>State</th>
+                <th>Post Code</th>
                 <th></th>
             </tr>
         </thead>
@@ -37,7 +37,7 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/attraction.js"></script>
+    <script src="~/js/city.js"></script>
 
 }
 
