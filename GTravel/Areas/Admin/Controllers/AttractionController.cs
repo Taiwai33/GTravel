@@ -89,10 +89,24 @@ namespace GTravel.Areas.Admin.Controllers
             return Json(new { data = _db.Attractions
                 .Include(a=>a.City)
                 .Select(a=> new { 
-                a.Id,a.Name, City = a.City.Name, State = a.City.State
+                a.Id,a.Name, City = a.City.Name, a.City.State
                 })
                 .ToList() });
         
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var dbAttraction = _db.Attractions.FirstOrDefault(a => a.Id == id);
+            if (dbAttraction == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+            }
+            _db.Attractions.Remove(dbAttraction);
+            _db.SaveChanges();
+            return Json(new { success = true, message = "Delete Successful" });
+
         }
 
         #endregion

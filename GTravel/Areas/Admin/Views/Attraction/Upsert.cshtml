@@ -1,19 +1,28 @@
 ﻿@model GTravel.Domain.ViewModels.SelectListViewModel<GTravel.Domain.Attraction>
 @{
-    var title = "Create Attraction";
+    var title = "Create";
     var Attraction = Model.Entity;
 
 }
 
+
+
+@if (Attraction.Id != 0)
+{
+    title = "Update";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Attraction">Attractions</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@title</li>
+    </ol>
+</nav>
 <form method="post" asp-action="Upsert">
     <div class="row px-2 mx-2 backgroundWhite border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @if (Attraction.Id != 0)
-        {
-            title = "Edit Attraction";
-        }
         <div class="col-12">
-            <h2 class=" text-primary">@title</h2>
+            <h2 class=" text-primary">@title Attraction</h2>
             <br />
 
 
