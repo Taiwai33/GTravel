@@ -1,6 +1,12 @@
 ﻿
 
 <br />
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Tour Index</li>
+    </ol>
+</nav>
 <div class=" border backgroundWhite p-3">
     <div class="row">
         <div class="col-6">
@@ -17,8 +23,7 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Departure Location</th>
-                <th>Cities(stops)</th>
+                <th>Max Capacity</th>
                 <th></th>
 
             </tr>
@@ -29,5 +34,7 @@
 
 
 @section Scripts{
-    <script src="~/js/package.js"></script>
+
+    <script src="~/js/tour.js"></script>
+
 }

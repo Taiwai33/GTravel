@@ -17,36 +17,25 @@ function loadDataTable() {
         "columns": [
             {
                 "data": "name",
-                "render": function (data) {
-                    return`<div><a asp-action="Details" asp-controller="Admin">${data}</a></div>`
-
+                "render": function (data, type,row) {
+                    return `<a href="/Admin/tour/Details/${row.id}" >${data}</a>`
                 },
                 "width": "20%"
             },
-            { "data": "Departure Location", "width": "5%" },
-            { "data": "Number of stops", "width": "5%" },
-
-
+            {"data": "maxCapacity","width": "20%"},
             {
                 "data": "id",
                 "render": function (data) {
-                    return `<div class="text-center">  
-                            <a href="/Admin/package/Details/${data}" class='btn btn-success text-white' style='cursor:pointer; width:85px;'>
-                            Details</a>
-                                &nbsp;
-                            <a onClick=Publish("/Admin/package/Publish/${data}") class='btn btn-success text-white' style='cursor:pointer; width:85px;'>
-                            Publish
-                                </a>
-                                &nbsp;
-                            <a href="/Admin/packageCity/Index/${data}" class='btn btn-success text-white' style='cursor:pointer; width:85px;'>
+                    return `<div class="text-center">                              
+                            <a href="/Admin/tourCity/Index/${data}" class='btn btn-success text-white' style='cursor:pointer; width:85px;'>
                             <i class="far fa-plus-square"></i> Cities
                                 </a> 
                                 &nbsp;
-                                <a href="/Admin/package/Update/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
+                                <a href="/Admin/tour/Update/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
                             <i class='far fa-edit'></i>
                                 </a>
                                 &nbsp;
-                                <a onclick=Delete("/Admin/package/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:50px;'>
+                                <a onclick=Delete("/Admin/tour/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:50px;'>
                             <i class='far fa-trash-alt'></i>
                                 </a>
                             </div>

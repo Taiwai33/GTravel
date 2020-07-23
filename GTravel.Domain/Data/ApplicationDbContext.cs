@@ -18,6 +18,7 @@ namespace GTravel.Domain.Data
         public DbSet<TourAttraction> TourAttractions { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Attraction> Attractions { get; set; }
+        public DbSet<Meal> Meals { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

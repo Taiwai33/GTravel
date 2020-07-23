@@ -1,0 +1,121 @@
+﻿@model GTravel.Domain.ViewModels.SelectListViewModel<GTravel.Domain.Tour>
+@{
+    var tour = Model.Entity;
+    var title = "Update Tour: "+ tour.Name;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Tour">Tours</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Update</li>
+    </ol>
+</nav>
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="row px-2 mx-2 backgroundWhite border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <h2 class="text-primary mt-2">@title</h2>
+            <br />
+            <div class="col-11">
+                <div class="form-group row mb-3">
+                    <div class="col-2 ">
+                        <label asp-for="@tour.Name"></label>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="@tour.Name" class="form-control" />
+                        <span asp-validation-for="@tour.Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-2 ">
+                        <label asp-for="@tour.RRP"></label>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="@tour.RRP" class="form-control" />
+                        <span asp-validation-for="@tour.RRP" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="col-2 ">
+                        <label asp-for="@tour.MaxCapacity"></label>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="@tour.MaxCapacity" class="form-control" />
+                        <span asp-validation-for="@tour.MaxCapacity" class="text-danger"></span>
+                    </div>
+                    <div class="col-2 ">
+                        <label asp-for="@tour.TourDurationDays">Duration</label>
+
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="@tour.TourDurationDays" class="form-control" />
+                        <span asp-validation-for="@tour.TourDurationDays" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row mb-3">
+
+                    <div class="col-2">
+                        <label asp-for="@tour.DepartureLocation">Departure Location</label>
+                    </div>
+                    <div class="col-4">
+                        <select asp-for="@tour.DepartureLocation" asp-items="Model.SelectListItems">
+                            <option value="">--Select City--</option>
+                        </select>
+                    </div>
+                    <div class="col-2 ">
+                        <label asp-for="@tour.AccommodationNumberOfNights">Accomodation</label>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="@tour.AccommodationNumberOfNights" class="form-control" />
+                        <span asp-validation-for="@tour.AccommodationNumberOfNights" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="col-2">
+                        <label asp-for="@tour.ImageUrl"></label>
+                    </div>
+                    <div class="col-6">
+                        <input type="file" name="files" id="uploadBox" multiple class="form-control mb-3" />
+                        <span asp-validation-for="@tour.ImageUrl" class="text-danger"></span>
+                    </div>
+                   
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="col-4 offset-2">
+                        <img src="@tour.ImageUrl" class="img-fluid" />
+                    </div>
+                </div>
+
+                    <div class="form-group row mb-3">
+                        <div class="col-2 ">
+                            <label asp-for="@tour.BriefDescription"></label>
+                        </div>
+                        <div class="col-10">
+                            <textarea asp-for="@tour.BriefDescription" cols="4" maxlength="100" class="form-control" style="height:150px"></textarea>
+                            <span asp-validation-for="@tour.BriefDescription" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <div class="col-2 ">
+                            <label asp-for="@tour.FullDescription"></label>
+                        </div>
+                        <div class="col-10">
+                            <textarea asp-for="@tour.FullDescription" cols="4" class="form-control" style="height:300px"></textarea>
+                            <span asp-validation-for="@tour.FullDescription" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+
+                </div>
+            </div>
+    </div>
+
+    <br />
+    <div class="form-group row">
+        <div class="col-8 offset-2">
+            <partial name="_EditAndBackToListButton" model="@tour.Id" />
+        </div>
+    </div>
+</form>
