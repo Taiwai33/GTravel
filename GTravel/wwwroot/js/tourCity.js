@@ -1,7 +1,7 @@
 ﻿var dataTable;
 var url;
 $(document).ready(function () {
-    url = "/admin/tourCity/GetAll/" + packageid;
+    url = "/admin/tourCity/GetAll/" + tourId;
     loadDataTable();
 });
 
@@ -19,7 +19,7 @@ function loadDataTable() {
             { "data": "city", "width": "20%" },
             { "data": "state", "width": "10%" },
             {
-                "data": "id",
+                "data": "tourCityId",
                 "render": function (data) {
                     return `<div class="text-center btn-group">
                                 <a href="/Admin/tourAttraction/create/${data}" class='btn btn-success text-white mr-2' style='cursor:pointer; width:120px;'>

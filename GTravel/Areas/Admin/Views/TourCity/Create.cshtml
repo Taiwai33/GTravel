@@ -1,0 +1,54 @@
+﻿@model GTravel.Domain.ViewModels.SelectListViewModel<GTravel.Domain.TourCity>
+
+@{
+    var title = $"Add City to {Model.Entity.Tour.Name}";
+    var tourCity = Model.Entity;
+    var tour = Model.Entity.Tour;
+}
+
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Tour">Tours</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="TourCity" asp-route-id="@tour.Id">Cities</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add City</li>
+        </ol>
+    </nav>
+<form method="post" asp-action="Create">
+    <div class="row px-2 mx-2 backgroundWhite border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <h2 class="text-primary"> @title</h2>
+            <br />
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="@tourCity.CityId">City</label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="@tourCity.CityId" class="form-control" asp-items="Model.SelectListItems">
+                            <option value="">-- Select City --</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" asp-route-tourId="@tour.Id" class="btn btn-outline-primary form-control">Add</button>
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" asp-route-tourId="@tour.Id" class="btn btn-success form-control">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
