@@ -1,0 +1,88 @@
+﻿@model GTravel.Domain.Tour
+
+@{
+    var title = "Meal Details: " + Model.Name;
+    var meal = Model.Meal;
+    var createOrUpdate = "Update";
+}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Tour">Tours</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Meal Details</li>
+    </ol>
+</nav>
+<br />
+
+<div class="backgroundWhite container">
+    <div class=" row col-12 ">
+        @if (Model.Meal != null)
+        {
+            <div>
+                <h4>@title</h4>
+
+            </div>
+            <span style="height:100px"></span>
+            <div class="row col-12">
+                <dl class="row col-8">
+                    @if (meal.Breakfast != 0)
+                    {
+                        <dt class="col-sm-4">Breakfast: </dt>
+                        <dd class="col-sm-5">@meal.Breakfast</dd>
+                    }
+                    @if (meal.Lunch != 0)
+                    {
+                        <dt class="col-sm-4">Lunch: </dt>
+                        <dd class="col-sm-5">@meal.Lunch</dd>
+                    }
+                    @if (meal.Dinner != 0)
+                    {
+
+                        <dt class="col-sm-4">Dinner: </dt>
+                        <dd class="col-sm-5">@meal.Dinner</dd>
+                    }
+                </dl>
+
+            </div>
+        }
+        else
+        {
+            createOrUpdate = "Create";
+            <div class="row col-12 d-flex justify-content-center" style="height:200px">
+
+                <h4>There are currently no meals planned for this tour</h4>
+            </div>
+
+        }
+
+    </div>
+
+    <div class=" row">
+        <div class="col-8 ">
+            <div class="row">
+                <div class="col">
+                    <a asp-action="Upsert" asp-controller="Meal" class="btn btn-outline-primary form-control" asp-route-tourId="@Model.Id">@createOrUpdate</a>
+                </div>
+                <div class="col">
+                    <a asp-action="Index" asp-controller="Tour" class="btn btn-success form-control">Back to List</a>
+                </div>
+                @if (Model.Meal != null)
+                {
+                    <div class="col-1">
+                        <a onclick=Delete("/Admin/meal/Delete/@meal.Id") class='btn btn-danger text-white' style='cursor:pointer; width:50px;'>
+                            <i class='far fa-trash-alt'></i>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/mealDetails.js"></script>
+
+
+}

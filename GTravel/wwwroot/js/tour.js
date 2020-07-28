@@ -31,6 +31,10 @@ function loadDataTable() {
                             <i class="far fa-plus-square"></i> Cities
                                 </a> 
                                 &nbsp;
+                                <a href="/Admin/meal/details/${data}" class='btn btn-success text-white' style='cursor:pointer; width:85px;'>
+                            <i class="far fa-plus-square"></i> Meals
+                                </a> 
+                                &nbsp;
                                 <a href="/Admin/tour/Update/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
                             <i class='far fa-edit'></i>
                                 </a>

@@ -5,7 +5,7 @@ namespace GTravel.Domain
     public class TourCity
     {
         public int Id { get; set; }
-        public int PackageId { get; set; }
+        public int TourId { get; set; }
         public Tour Tour{ get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
