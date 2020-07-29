@@ -1,7 +1,7 @@
 ﻿@model GTravel.Domain.ViewModels.SelectListViewModel<GTravel.Domain.TourCity>
 
 @{
-    var title = $"Add City to {Model.Entity.Tour.Name}";
+    var title = $"Add City: {Model.Entity.Tour.Name}";
     var tourCity = Model.Entity;
     var tour = Model.Entity.Tour;
 }
@@ -21,9 +21,8 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="col-12">
-            <h2 class="text-primary"> @title</h2>
-            <br />
-            <div class="col-8">
+            <h3 class="text-primary mt-3"> @title</h3>
+            <div class="col-8 my-5">
                 <div class="form-group row">
                     <div class="col-4">
                         <label asp-for="@tourCity.CityId">City</label>

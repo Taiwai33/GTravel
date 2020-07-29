@@ -18,7 +18,7 @@ namespace GTravel.Areas.Admin.Controllers
         {
 
         }
-        public IActionResult Index(int id)
+        public IActionResult Index(int id)//tourId
         {
             var dbTour = _db.Tours.FirstOrDefault(t=> t.Id == id);
             if (dbTour != null)

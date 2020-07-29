@@ -1,14 +1,13 @@
 ﻿
 
-<br />
-<nav aria-label="breadcrumb">
+<nav aria-label="breadcrumb mt-3">
     <ol class="breadcrumb bg-transparent">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">Tour</li>
     </ol>
 </nav>
 <div class=" border backgroundWhite p-3">
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-6">
             <h2 class="text-primary">Tours</h2>
         </div>
@@ -16,9 +15,6 @@
             <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Create New Tour </a>
         </div>
     </div>
-    <br />
-    <br />
-
     <table id="tblData" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>

@@ -1,10 +1,7 @@
 ﻿@model GTravel.Domain.Meal
 @{
     var title = "Create Meals";
-
-
 }
-
 
 
 @if (Model.Id != 0)
@@ -17,18 +14,13 @@
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Tour">Tours</a></li>
         <li class="breadcrumb-item"><a asp-action="Details" asp-controller="Meal" asp-route-id="@Model.TourId">Meal Details</a></li>
         <li class="breadcrumb-item active" aria-current="page">@title</li>
-
     </ol>
 </nav>
 <form method="post" asp-action="Upsert">
     <div class="row px-2 mx-2 backgroundWhite border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-12">
-            <br />
-            <h2 class=" text-primary">@title</h2>
-            <br />
-
-
+            <h2 class="text-primary mt-3 mb-4">@title</h2>
             <div class="col-8">
                 <div class="form-group row">
                     <div class="col-4">

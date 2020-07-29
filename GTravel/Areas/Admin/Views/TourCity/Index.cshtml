@@ -5,8 +5,7 @@
 
 }
 
-<br />
-<nav aria-label="breadcrumb">
+<nav aria-label="breadcrumb mt-3">
     <ol class="breadcrumb bg-transparent">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Tour">Tours</a></li>
@@ -14,7 +13,7 @@
     </ol>
 </nav>
 <div class=" border backgroundWhite p-4">
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-6">
             <h3 class="text-primary">@title</h3>
         </div>
@@ -22,10 +21,6 @@
             <a asp-action="Create" asp-route-tourId="@Model.Id" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Add Cities </a>
         </div>
     </div>
-    <br />
-    <br />
-
-    <br />
 
     <table id="tblData" class="table table-striped table-bordered" style="width:100%">
         <thead>

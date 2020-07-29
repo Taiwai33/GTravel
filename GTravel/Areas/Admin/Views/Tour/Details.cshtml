@@ -2,6 +2,7 @@
 
 @{
     var title = "Details: " + Model.Name;
+    var meal = Model.Meal;
 }
 
 
@@ -13,13 +14,11 @@
         <li class="breadcrumb-item active" aria-current="page">Details</li>
     </ol>
 </nav>
-<br />
 
-<div class="backgroundWhite container">
+<div class="backgroundWhite container mt-4">
     <div class=" row col-12 ">
         <h3>@title</h3>
-        <br />
-        <div class="row col-12">
+        <div class="row col-12 mt-4">
             <dl class="row col-8">
                 <dt class="col-sm-4">Name: </dt>
                 <dd class="col-sm-5">@Model.Name</dd>
@@ -43,45 +42,67 @@
                 <img src="@Model.ImageUrl" class="img-fluid" />
             </div>
         </div>
-        <dl class="row">
-            <dt class="col-sm-3">Tour Introduction</dt>
-            <dd class="col-sm-9">
-                <p>@Html.Raw(Model.BriefDescription)</p>
-            </dd>
+        <div class="row col-12">
+            <dl class="row col-11">
+                <dt class="col-sm-3">Tour Introduction</dt>
+                <dd class="col-sm-9">
+                    <p>@Html.Raw(Model.BriefDescription)</p>
+                </dd>
 
-            <dt class="col-sm-3">Full Description</dt>
-            <dd class="col-sm-9">
-                <p>@Html.Raw(Model.FullDescription)</p>
-            </dd>
-        </dl>
-
-
-        @if (Model.Meal != null)
-        {
-            <h5>Meals</h5>
-            <dl class="row">
-                <dt class="col-sm-3">Breakfast: </dt>
-                <dd class="col-sm-9">@Model.Meal.Breakfast</dd>
-
-                <dt class="col-sm-3">Lunch: </dt>
-                <dd class="col-sm-9">@Model.Meal.Lunch</dd>
-
-                <dt class="col-sm-3">Breakfast: </dt>
-                <dd class="col-sm-9">@Model.Meal.Dinner</dd>
+                <dt class="col-sm-3">Full Description</dt>
+                <dd class="col-sm-9">
+                    <p>@Html.Raw(Model.FullDescription)</p>
+                </dd>
             </dl>
-        }
+        </div>
+
+
 
         @if (Model.TourCities != null)
         {
-            
-            <dl>
-                @foreach (var city in Model.TourCities)
-                {
-                    <dt class="col-sm-3">City: </dt>
-                    <dd class="col-sm-9">@city.City.Name  @city.City.State</dd>
-                }
-            </dl>
+            <hr style="width:100%; text-align:left;margin-left:0; ">
+            <div class="row col-12">
+                <div class="row col-12 my-2">
+                    <h4><strong>Cities</strong></h4>
+                </div>
 
+                <ul>
+                    @foreach (var city in Model.TourCities)
+                    {
+                        <li>@city.City.Name  @city.City.State</li>
+                    }
+                </ul>
+            </div>
+        }
+
+        @if (meal != null)
+        {
+                <hr style="width:100%; text-align:left;margin-left:0; ">
+            <div class="row col-12">
+
+                <div class="row col-12 my-2">
+
+                    <h4><strong>Meals</strong></h4>
+                </div>
+                <dl class="row col-8">
+                    @if (meal.Breakfast != 0)
+                    {
+                        <dt class="col-sm-4">Breakfast: </dt>
+                        <dd class="col-sm-5">@meal.Breakfast</dd>
+                    }
+                    @if (meal.Lunch != 0)
+                    {
+                        <dt class="col-sm-4">Lunch: </dt>
+                        <dd class="col-sm-5">@meal.Lunch</dd>
+                    }
+                    @if (meal.Dinner != 0)
+                    {
+
+                        <dt class="col-sm-4">Dinner: </dt>
+                        <dd class="col-sm-5">@meal.Dinner</dd>
+                    }
+                </dl>
+            </div>
         }
     </div>
 

@@ -16,8 +16,7 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="col-12">
-            <h2 class="text-primary mt-2">@title</h2>
-            <br />
+            <h2 class="text-primary mt-3 mb-4">@title</h2>
             <div class="col-11">
                 <div class="form-group row mb-3">
                     <div class="col-2 ">
@@ -80,7 +79,7 @@
                         <input type="file" name="files" id="uploadBox" multiple class="form-control mb-3" />
                         <span asp-validation-for="@tour.ImageUrl" class="text-danger"></span>
                     </div>
-                   
+
                 </div>
                 <div class="form-group row mb-3">
                     <div class="col-4 offset-2">
@@ -88,34 +87,31 @@
                     </div>
                 </div>
 
-                    <div class="form-group row mb-3">
-                        <div class="col-2 ">
-                            <label asp-for="@tour.BriefDescription"></label>
-                        </div>
-                        <div class="col-10">
-                            <textarea asp-for="@tour.BriefDescription" cols="4" maxlength="100" class="form-control" style="height:150px"></textarea>
-                            <span asp-validation-for="@tour.BriefDescription" class="text-danger"></span>
-                        </div>
+                <div class="form-group row mb-3">
+                    <div class="col-2 ">
+                        <label asp-for="@tour.BriefDescription"></label>
                     </div>
-                    <div class="form-group row mb-3">
-                        <div class="col-2 ">
-                            <label asp-for="@tour.FullDescription"></label>
-                        </div>
-                        <div class="col-10">
-                            <textarea asp-for="@tour.FullDescription" cols="4" class="form-control" style="height:300px"></textarea>
-                            <span asp-validation-for="@tour.FullDescription" class="text-danger"></span>
-                        </div>
+                    <div class="col-10">
+                        <textarea asp-for="@tour.BriefDescription" cols="4" maxlength="100" class="form-control" style="height:150px"></textarea>
+                        <span asp-validation-for="@tour.BriefDescription" class="text-danger"></span>
                     </div>
-                    <br />
-
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="col-2 ">
+                        <label asp-for="@tour.FullDescription"></label>
+                    </div>
+                    <div class="col-10">
+                        <textarea asp-for="@tour.FullDescription" cols="4" class="form-control" style="height:300px"></textarea>
+                        <span asp-validation-for="@tour.FullDescription" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
-    </div>
 
-    <br />
-    <div class="form-group row">
-        <div class="col-8 offset-2">
-            <partial name="_EditAndBackToListButton" model="@tour.Id" />
+            <div class="form-group row my-4">
+                <div class="col-8 offset-2">
+                    <partial name="_EditAndBackToListButton" model="@tour.Id" />
+                </div>
+            </div>
         </div>
     </div>
 </form>
