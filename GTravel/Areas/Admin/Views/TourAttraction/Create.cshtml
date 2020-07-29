@@ -1,0 +1,52 @@
+﻿@model GTravel.Domain.ViewModels.SelectListViewModel<GTravel.Domain.TourAttraction>
+
+@{
+    var title = $"Add Attraction";
+    var tourAttraction = Model.Entity;
+}
+
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Tour">Tours</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="TourCity" asp-route-id="@Model.Entity.TourCityId">Cities</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add City</li>
+    </ol>
+</nav>
+<form method="post" asp-action="Create">
+    <div class="row px-2 mx-2 backgroundWhite border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <h3 class="text-primary mt-3"> @title</h3>
+            <div class="col-8 my-5">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="@tourAttraction.AttractionId">Attractions</label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="@tourAttraction.AttractionId" class="form-control" asp-items="Model.SelectListItems">
+                            <option value="">-- Select Attraction --</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" asp-route-tourCityId="@tourAttraction.TourCity.Id" class="btn btn-outline-primary form-control">Add</button>
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" asp-route-tourCityId="@tourAttraction.TourCity.Id" class="btn btn-success form-control">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

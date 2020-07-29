@@ -129,7 +129,10 @@ namespace GTravel.Areas.Admin.Controllers
             var dbTour = _db.Tours
                 .Include(t=>t.Meal)
                 .Include(t=>t.TourCities)
-                .ThenInclude(tc=>tc.City)
+                    .ThenInclude(tc=>tc.City)
+                .Include(t => t.TourCities)
+                    .ThenInclude(tc=>tc.TourAttractions)
+                        .ThenInclude(tca=>tca.Attraction)
                 .FirstOrDefault(t => t.Id == id);
            
             return View(dbTour);

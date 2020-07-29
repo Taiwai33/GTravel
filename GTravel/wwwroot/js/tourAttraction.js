@@ -1,11 +1,11 @@
 ﻿var dataTable;
 var url;
 $(document).ready(function () {
-    url = "/admin/tourCity/GetAll/" + tourId;
+
+    url = "/admin/tourAttraction/GetAll/" + tourCityId;
     loadDataTable();
+
 });
-
-
 
 function loadDataTable() {
 
@@ -16,25 +16,19 @@ function loadDataTable() {
             "datatype": "json"
         },
         "columns": [
+            { "data": "attraction", "width": "30%" },
             { "data": "city", "width": "20%" },
-            { "data": "state", "width": "10%" },
             {
-                "data": "tourCityId",
+                "data": "id",
                 "render": function (data) {
-                    return `<div class="text-center btn-group">
-                                <a href="/Admin/tourAttraction/index/${data}" class='btn btn-success text-white mr-2' style='cursor:pointer; width:120px;'>
-                                <i class="far fa-plus-square"></i>
-                                  Attractions</a>
-                                <a href="/Admin/tourCity/Update/${data}" class='btn btn-success text-white mr-2' style='cursor:pointer; width:50px;'>
-                                    <i class='far fa-edit'></i>
-                                </a>
+                    return `<div class="text-center">
                                 &nbsp;
-                                <a onclick=Delete("/Admin/tourCity/Delete/${data}") class='btn btn-danger text-white mr-2' style='cursor:pointer; width:50px;'>
-                            <i class='far fa-trash-alt'></i>
+                                <a onclick=Delete("/Admin/tourAttraction/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:100px;'>
+                            <i class='far fa-trash-alt'></i>Delete
                                 </a>
                             </div>
                      `;
-                }, "width": "20%"
+                }, "width": "30%"
             }
         ],
         "language": {
@@ -42,7 +36,10 @@ function loadDataTable() {
         },
         "width": "100%"
     });
+
 }
+
+
 
 function Delete(url) {
     swal({

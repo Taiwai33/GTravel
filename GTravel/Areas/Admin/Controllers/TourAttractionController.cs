@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GTravel.Domain;
 using GTravel.Domain.Data;
+using GTravel.Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace GTravel.Areas.Admin.Controllers
@@ -29,10 +32,51 @@ namespace GTravel.Areas.Admin.Controllers
 
         }
 
+        public IActionResult Create(int tourCityId)
+        {
+            var dbTourCity = _db.TourCities.Include(tc => tc.Tour).FirstOrDefault(tc => tc.Id == tourCityId);
+            var attractionsAssociatedToCurrentTourCity = _db.Attractions.Where(a => a.CityId == dbTourCity.CityId).ToList();
+            var dbAttractions = _db.Attractions
+                .Where(a => a.TourAttractions.Count() > 0 && a.CityId == dbTourCity.CityId).ToList();
+
+            if (dbTourCity != null)
+            {
+                SelectListViewModel<TourAttraction> vmTourAttraction = new SelectListViewModel<TourAttraction>()
+                {
+                    Entity = new TourAttraction() { TourCity = dbTourCity },
+                    SelectListItems = new SelectList (attractionsAssociatedToCurrentTourCity.Except(dbAttractions),"Id","Name")
+                };
+                
+                return View(vmTourAttraction);
+            }
+            else {
+
+                return RedirectToAction("Index","TourAttraction", new { id = tourCityId});
+            }
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult Create(int tourCityId, [Bind("AttractionId")]TourAttraction tourAttraction)
+        {
+            if (ModelState.IsValid)
+            {
+                tourAttraction.TourCityId = tourCityId;
+                _db.TourAttractions.Add(tourAttraction);
+                _db.SaveChanges();
+                return RedirectToAction("Index", "TourAttraction", new { id = tourCityId });
+            }
+            else {
+
+                return RedirectToAction("Index", "Tour");
+
+            }
+        }
+
 
 
         #region API CALLS
-        public IActionResult GetAll(int id)//packageCity
+        public IActionResult GetAll(int id)//tourCityId
         {
 
             return Json(new
@@ -56,12 +100,12 @@ namespace GTravel.Areas.Admin.Controllers
 
         public IActionResult Delete(int id)
         {
-            var tourCityDb = _db.TourCities.FirstOrDefault(pc => pc.Id == id);
-            if (tourCityDb == null)
+            var tourAttraction = _db.TourAttractions.FirstOrDefault(pc => pc.Id == id);
+            if (tourAttraction == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            _db.TourCities.Remove(tourCityDb);
+            _db.TourAttractions.Remove(tourAttraction);
             _db.SaveChanges();
             return Json(new { success = true, message = "Delete Successful" });
 
