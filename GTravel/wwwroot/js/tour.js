@@ -23,6 +23,7 @@ function loadDataTable() {
                 "width": "20%"
             },
             {"data": "maxCapacity","width": "20%"},
+            {"data": "status","width": "10%"},
             {
                 "data": "id",
                 "render": function (data) {
@@ -35,8 +36,8 @@ function loadDataTable() {
                             <i class="far fa-plus-square"></i> Meals
                                 </a> 
                                 &nbsp;
-                                <a href="/Admin/tour/Update/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
-                            <i class='far fa-edit'></i>
+                                 <a onClick=Publish("/Admin/tour/Publish/${data}") class='btn btn-success text-white' style='cursor:pointer; width:85px;'>
+                            Publish
                                 </a>
                                 &nbsp;
                                 <a onclick=Delete("/Admin/tour/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:50px;'>

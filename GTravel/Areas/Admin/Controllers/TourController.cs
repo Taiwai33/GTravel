@@ -48,6 +48,7 @@ namespace GTravel.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {              
                 tour.ImageUrl = GetImageUrl();
+                tour.StatusId = 1;
                 _db.Tours.Add(tour);
                 _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -148,9 +149,9 @@ namespace GTravel.Areas.Admin.Controllers
             return Json(new
             {
                 data = _db.Tours
-                .Include(p => p.TourCities)
-                .Select(p => new {
-                    p.Id, p.Name,p.MaxCapacity
+                .Include(t => t.TourCities)
+                .Select(t => new {
+                    t.Id, t.Name,t.MaxCapacity,t.Status
                 })
                 .ToList()
             });
@@ -173,6 +174,23 @@ namespace GTravel.Areas.Admin.Controllers
             _db.Tours.Remove(dbTour);
             _db.SaveChanges();
             return Json(new { success = true, message = "Delete Successful" });
+
+        }
+
+        [HttpPost]
+        public IActionResult Publish(int id)
+        {
+            var dbTour = _db.Tours.FirstOrDefault(p => p.Id == id);
+            if (dbTour == null)
+            {
+                return Json(new { success = false, message = "Error while publishing, please try again" });
+            }
+
+            dbTour.StatusId = 2;
+            _db.Tours.Update(dbTour);
+            _db.SaveChanges();
+
+            return Json(new { success = true, message = "Publish Successful!" });
 
         }
 

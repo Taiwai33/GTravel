@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GTravel.Domain.ViewModels;
 using GTravel.Areas.Customer.Controllers;
+using GTravel.Domain.Data;
 
 namespace GTravel.Controllers
 {
@@ -14,14 +15,19 @@ namespace GTravel.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
+            :base(db)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            HomeIndexViewModel homeIndexVM = new HomeIndexViewModel()
+            {
+                Tours = _db.Tours.Where(t => t.StatusId == 2).ToList()
+            };
+            return View(homeIndexVM);
         }
 
         public IActionResult Privacy()

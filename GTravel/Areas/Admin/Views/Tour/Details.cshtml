@@ -69,11 +69,14 @@
                 <ul>
                     @foreach (var city in Model.TourCities)
                     {
-                        <li>@city.City.Name  @city.City.State</li>
+                        <li>@city.City.Name  @city.City.State
+                    
+                        
+                        </li>
                         if (city.TourAttractions.Count > 0)
                         {
-                            <li>
-                                <ul>
+                            <li> 
+                                <ul style="list-style-type:none;">
                                     @foreach (var attraction in city.TourAttractions)
                                     {
                                     <li>@attraction.Attraction.Name </li>

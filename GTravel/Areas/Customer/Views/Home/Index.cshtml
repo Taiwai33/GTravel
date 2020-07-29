@@ -1,4 +1,88 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model GTravel.Domain.ViewModels.HomeIndexViewModel
+
+
+@{
+    var mainTitle = "Top Tours";
+    var title = "Browse Tours by State";
 }
+
+<div class="row container pb-3 backgroundWhite">
+    <div class="col-12">
+        <br />
+        <br />
+        <div class="row justify-content-center">
+            <h3 class=" text-primary"><b>@mainTitle</b></h3>
+        </div>
+        <div class="col-12 ">
+            <div class="row my-3 ">
+                @foreach (var tour in Model.Tours)
+                {
+                    <div class="col-lg-4 col-xl-4 col-md-6 pb-4 card-deck">
+                        <div class="card">
+                            <img src="@tour.ImageUrl" class="card-img-top" />
+                            <div class="pl-2 pt-2 ">
+                                <h6 class="card-title text-primary ">
+                                    <strong>@tour.Name </strong>
+                                    <br /><small> Departs Sydney</small>
+                                </h6>
+
+                            </div>
+                            <div class="card-body p-1">
+                                <div class="row col-12 mb-2">
+                                    <span style="color:#9f9f9f; line-height:1;"><small>@Html.Raw(tour.BriefDescription)</small> </span>
+                                </div>
+
+                            </div>
+                            <div class="row m-0 card-footer p-0">
+                                <div class="row col-12 text-center">
+                                    &nbsp;
+                                    <small><strong> @tour.TourDurationDays Days from $@tour.RRP pp </strong></small>
+                                </div>
+                                <a asp-action="Details" class="btn btn-info btn-sm col " asp-route-tourId="@tour.Id">More Details</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row my-3">
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row justify-content-center">
+        <h3 class=" text-primary "><b>@title</b></h3>
+
+        <div class="col-12 ">
+            <div class="row my-3 ">
+                @foreach (var state in Model.States)
+                {
+                    var stateImage = $"{state}.jpg";
+
+
+                    <div class="col-lg-4 col-xl-4 col-md-6 pb-4 card-deck">
+                        <div class="card overlay">
+                            <a asp-action="StateDetails" asp-controller="Home" asp-route-state="@state">
+                                <img src="~/Images/@stateImage" class="card-img" />
+                                <div class="card-img-overlay text-center align-items-center">
+                                    <h4 class="card-title text-white">@state</h4>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row my-3">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
