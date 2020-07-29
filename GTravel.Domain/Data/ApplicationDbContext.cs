@@ -19,6 +19,8 @@ namespace GTravel.Domain.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<Attraction> Attractions { get; set; }
         public DbSet<Meal> Meals { get; set; }
+        public DbSet<Customer> Customers{ get; set; }
+        public DbSet<Order> Orders{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -43,6 +45,15 @@ namespace GTravel.Domain.Data
 
             builder.Entity<TourAttraction>().HasIndex(pa => new { pa.AttractionId, pa.TourCityId }).IsUnique();
 
+            builder.Entity<Customer>().Property(c => c.FirstName).IsRequired();
+            builder.Entity<Customer>().Property(c => c.LastName).IsRequired();
+            builder.Entity<Customer>().Property(c => c.StreetAddress).IsRequired();
+            builder.Entity<Customer>().Property(c => c.City).IsRequired();
+            builder.Entity<Customer>().Property(c => c.PostCode).IsRequired();
+            builder.Entity<Customer>().Property(c => c.State).IsRequired();
+            builder.Entity<Customer>().Property(c => c.Email).IsRequired();
+
+            builder.Entity<Order>().Property(p => p.SalePrice).HasColumnType("decimal(7,2)");
 
 
 
