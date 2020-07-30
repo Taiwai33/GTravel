@@ -1,0 +1,88 @@
+﻿@model GTravel.Domain.Tour
+
+@{
+    var title = Model.Name;
+
+
+}
+
+
+<div class="row px-2 mx-2 backgroundWhite border">
+    <div class="col-12">
+        <br />
+
+        <div class=" row col-12 col-md-6 ">
+            <h2>@title</h2>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-7">
+                <img src="@Model.ImageUrl" class="rounded img-fluid" />
+            </div>
+            <span class="col-1"></span>
+            <div class="col-4">
+                <div class="card ">
+                    <div class="card-header bg-primary text-light">Trip OverView</div>
+                    <div class="card-body">
+                        <div><strong>Duration :</strong>&nbsp; @Model.TourDurationDays Days</div>
+                        <div><strong>Departure City:</strong>&nbsp; Sydney</div>
+                        <div><strong>Arrival City: </strong>&nbsp;Brisbane</div>
+                        <div><strong>Price (AUD$) :</strong>&nbsp; @Model.RRP.ToString("c")</div>
+                        <br />
+
+                    </div>
+                    <a asp-action="Create" asp-controller="Order" asp-route-packageId="@Model.Id" class="btn card-footer btn-primary " style="width:100%; ">
+                        <i class="fas fa-plus"></i>  Book Now
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <hr />
+        <div class="row">
+            <div class="col-12 py-2">
+                <p>@Html.Raw(Model.FullDescription)</p>
+            </div>
+        </div>
+        <br />
+        <hr />
+        <div class="row">
+            <div class="col-12">
+                <div class="col-6">
+                    <h5>What's Included:</h5>
+                    <ul class="list-unstyled">
+                        <li>
+
+                            @if (Model.Meal != null)
+                            {
+                                <ul class="p-0">
+                                    <li style="display:inline-block">
+                                        <i class="fas fa-utensils"></i>&nbsp; Meals : &nbsp;
+                                    </li>
+                                    @if (Model.Meal.Breakfast != 0)
+                                    {
+                                        <li class="small" style="display:inline-block">@Model.Meal.Breakfast Breakfasts </li>
+                                    }
+                                    @if (Model.Meal.Lunch != 0)
+                                    {
+                                        <li class="small" style="display:inline-block">, @Model.Meal.Lunch Lunches </li>
+                                    }
+                                    @if (Model.Meal.Dinner != 0)
+                                    {
+                                        <li class="small" style="display:inline-block">, @Model.Meal.Dinner Dinners</li>
+                                    }
+                                </ul>
+                            }
+
+                        </li>
+                        <li><i class="fas fa-bed"></i>&nbsp; Accomodation : &nbsp;<small>Hotel (4nts), Train(overnight)</small></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
