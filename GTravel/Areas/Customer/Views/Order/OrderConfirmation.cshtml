@@ -1,0 +1,22 @@
+﻿@model int
+@{
+    ViewData["Title"] = "OrderConfirmation";
+}
+
+<div class="container row">
+    <div class="col-12 text-center pt-3">
+        <h3 class="text-primary text-center"> Order Submitted</h3>
+        <img src="~/images/beach.jpg" width="50%" class="py-3" />
+    </div>
+    <div class="col-12 text-center ">
+        <br />
+        Thank you for joining GTravel on your next tour!
+        <br />
+        We have recieved your order and one of our team members will be in touch shortly!
+        <br />
+        Your Order Reference Number is : BOA20 @Model.ToString()
+    </div>
+    <br />
+    <br />
+</div>
+

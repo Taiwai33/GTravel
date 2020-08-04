@@ -23,7 +23,16 @@ function loadDataTable() {
                 "width": "20%"
             },
             {"data": "maxCapacity","width": "20%"},
-            {"data": "status","width": "10%"},
+            {
+                "data": "status",
+                "render": function (data) {
+                    return `<div></div>
+
+                    `
+
+                },
+                "width": "10%"
+            },
             {
                 "data": "id",
                 "render": function (data) {

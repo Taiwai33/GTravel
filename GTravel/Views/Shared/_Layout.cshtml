@@ -15,33 +15,72 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-transparent box-shadow">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  navbar-light bg-transparent box-shadow">
             <div class="container ">
-                <a class="navbar-brand p-0" asp-area="" asp-controller="Home" asp-action="Index">
+                @{ 
+                    var area = "Customer";
+                    if (User.IsInRole("Admin") || User.IsInRole("Manager")) { area = "Admin"; }
+                }
+                <a class="navbar-brand p-0" asp-area="@area" asp-controller="Home" asp-action="Index">
                     <img src="~/Images/gtravel_logo.png" width="90" height="70" class="d-inline-block align-top " alt="logo" />
-                    
+
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse ">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
+                                               
+                        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link home" asp-area="Admin" asp-controller="Tour" asp-action="Index">Tours</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link home" asp-area="Admin" asp-controller="Attraction" asp-action="Index">Attractions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link home" asp-area="Admin" asp-controller="City" asp-action="Index">Cities</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link home" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link home" asp-area="Admin" asp-controller="Tour" asp-action="Index">Tours</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link home" asp-area="Admin" asp-controller="Attraction" asp-action="Index">Attractions</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link home" asp-area="Admin" asp-controller="City" asp-action="Index">Cities</a>
-                        </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link home" asp-area="Admin" asp-controller="Employee" asp-action="Index">Employees</a>
+                                </li>
 
+                            }
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link home" asp-area="Customer" asp-controller="Home" asp-action="Index">All Tours</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropDown" role="button" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    Tours By State
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropDown">
+                                    <a class="dropdown-item" asp-route-state="NSW" asp-controller="Home" asp-action="StateDetails">New South Wales</a>
+                                    <a class="dropdown-item" asp-route-state="QLD" asp-controller="Home" asp-action="StateDetails">Queensland</a>
+                                    <a class="dropdown-item" asp-route-state="WA" asp-controller="Home" asp-action="StateDetails">Western Australia</a>
+                                    <a class="dropdown-item" asp-route-state="SA" asp-controller="Home" asp-action="StateDetails">South Australia</a>
+                                    <a class="dropdown-item" asp-route-state="VIC" asp-controller="Home" asp-action="StateDetails">Victoria</a>
+                                    <a class="dropdown-item" asp-route-state="TAS" asp-controller="Home" asp-action="StateDetails">Tasmania</a>
+                                    <a class="dropdown-item" asp-route-state="NT" asp-controller="Home" asp-action="StateDetails">Northern Territory</a>
+                                    <a class="dropdown-item" asp-route-state="ACT" asp-controller="Home" asp-action="StateDetails">Australian Capital Territory</a>
+
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link home" asp-controller="Home" asp-action="ContactUs">Contact</a>
+                            </li>
+                            
+
+                        }
                     </ul>
                 </div>
             </div>
@@ -49,6 +88,7 @@
         <div class="jumbotron jumbotron-fluid" style="text-align:center;">
 
         </div>
+       
     </header>
     <br />
     <div class="container my-3">
@@ -62,6 +102,11 @@
     <br />
     <footer class="border-top footer text-muted">
         <div class="container">
+            <div class="row col-12">
+                <a class="btn-floating btn-lg btn-fb" role="button"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn-floating btn-lg btn-ins" role="button"><i class="fab fa-instagram"></i></a>
+                <a class="btn-floating btn-lg btn-tw" role="button"><i class="fab fa-twitter"></i></a>
+            </div>
             &copy; 2020 - GTravel - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

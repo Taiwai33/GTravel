@@ -146,6 +146,7 @@ namespace GTravel.Areas.Admin.Controllers
 
         public IActionResult GetAll()
         {
+            
             return Json(new
             {
                 data = _db.Tours

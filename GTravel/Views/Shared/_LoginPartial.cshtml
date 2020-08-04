@@ -2,7 +2,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<ul class="navbar-nav">
+<ul class="navbar-nav pr-3">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
@@ -16,11 +16,16 @@
 }
 else
 {
+<li class="nav-item justify-content-end">
+    <h4 class="nav-link text-info">Call Us: 132 343 </h4>
+</li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i></a>
     </li>
 }
 </ul>
+
+
+@*<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+</li>*@

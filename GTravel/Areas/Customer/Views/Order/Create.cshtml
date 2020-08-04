@@ -1,0 +1,123 @@
+﻿@model GTravel.Domain.Order
+
+@{
+    var title = "Order Summary";
+}
+
+<form method="post">
+    <br />
+    <div class=" card">
+        <div class="card-header bg-primary text-light ml-0 row container ">
+            <div class="col-12 d-none d-md-block col-md-6 pb-1 ">
+                <i class="fas fa-shopping-cart"> &nbsp; Order Summary </i>
+            </div>
+            <div class="col-12 col-md-4 offset-md-2 text-right">
+                <a asp-action="Details" asp-controller="Home" asp-route-tourId="@Model.Tour.Id" class="btn btn-outline-info form-control btn-sm">
+                    Back To Cart
+                </a>
+            </div>
+        </div>
+        <div class="card-body ">
+            <div class="container rounded p-2 ">
+                <div class="row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-12 col-lg-6 pb-4">
+                        <div class=" row">
+                            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-primary">Customer Details:</span>
+                            </h4>
+                        </div>
+                        <div class="row my-1">
+                            <div class="col-3 ">
+                                <label asp-for="Customer.FirstName">First Name</label>
+                            </div>
+                            <div class="col-9">
+                                <input asp-for="Customer.FirstName" id="txtName" type="text" class="form-control" />
+                                <span asp-validation-for="Customer.FirstName" class="text-danger"> </span>
+                            </div>
+                        </div>
+                        <div class="row my-1">
+                            <div class="col-3 ">
+                                <label asp-for="Customer.LastName"></label>
+                            </div>
+                            <div class="col-9">
+                                <input asp-for="Customer.LastName" id="txtName" type="text" class="form-control" />
+                                <span asp-validation-for="Customer.LastName" class="text-danger"> </span>
+                            </div>
+                        </div>
+                        <div class="row my-1">
+                            <div class="col-3 ">
+                                <label asp-for="Customer.Phone"></label>
+                            </div>
+                            <div class="col-9">
+                                <input asp-for="Customer.Phone" id="txtPhone" type="text" class="form-control" />
+                                <span asp-validation-for="Customer.Phone" class="text-danger"> </span>
+                            </div>
+                        </div> <div class="row my-1">
+                            <div class="col-3 ">
+                                <label asp-for="Customer.StreetAddress"></label>
+                            </div>
+                            <div class="col-9">
+                                <input asp-for="Customer.StreetAddress" type="text" class="form-control" />
+                                <span asp-validation-for="Customer.StreetAddress" class="text-danger"> </span>
+                            </div>
+                        </div> <div class="row my-1">
+                            <div class="col-3 ">
+                                <label asp-for="Customer.City"></label>
+                            </div>
+                            <div class="col-9">
+                                <input asp-for="Customer.City" type="text" class="form-control" />
+                                <span asp-validation-for="Customer.City" class="text-danger"> </span>
+                            </div>
+                        </div> <div class="row my-1">
+                            <div class="col-3 ">
+                                <label asp-for="Customer.State"></label>
+                            </div>
+                            <div class="col-9">
+                                <input asp-for="Customer.State" type="text" class="form-control" />
+                                <span asp-validation-for="Customer.State" class="text-danger"> </span>
+                            </div>
+                        </div> <div class="row my-1">
+                            <div class="col-3 ">
+                                <label asp-for="Customer.PostCode"></label>
+                            </div>
+                            <div class="col-9">
+                                <input asp-for="Customer.PostCode" type="text" class="form-control" />
+                                <span asp-validation-for="Customer.PostCode" class="text-danger"> </span>
+                            </div>
+                        </div> <div class="row my-1">
+                            <div class="col-3 ">
+                                <label asp-for="Customer.Email"></label>
+                            </div>
+                            <div class="col-9">
+                                <input asp-for="Customer.Email" id="txtEmail" type="text" class="form-control" />
+                                <span asp-validation-for="Customer.Email" class="text-danger"> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-5 offset-lg-1 ">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-primary">Order Summary</span>
+                        </h4>
+                        <div class="list-group-item justify-content-between bg-light">
+                            <div>@Model.Tour.Name Tour</div>
+                            <div class="offset-lg-1"><small>Departure City: Sydney</small></div>
+                            <div class="offset-lg-1"><small>Departure Date: 30/10/2021</small></div>
+                            <hr />
+                            <text class="text-primary">Total (AUD)</text>
+                            <strong>@Model.Tour.RRP.ToString("c")</strong>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class=" col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-7 text-right">
+                <button type="submit" asp-route-tourId="@Model.Tour.Id" class="btn btn-success form-control">Place Order</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+

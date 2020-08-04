@@ -7,6 +7,16 @@ a.navbar-brand {
     word-break: break-all;
 }
 
+
+ .subHead li{
+    display:inline-block;        
+    marker:none;
+    font-size:large;
+    font-weight:bold;
+    margin-top:1em;
+
+}
+
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;
