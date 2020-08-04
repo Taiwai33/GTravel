@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GTravel.Domain.Data;
+using GTravel.Domain.Initialiser;
 
 namespace GTravel
 {
@@ -30,7 +31,8 @@ namespace GTravel
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+
+             services.AddIdentity<IdentityUser,IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -40,6 +42,7 @@ namespace GTravel
                 o.Cookie.IsEssential = true;
             });
 
+            services.AddScoped<IDbInitialiser, DbInitialiser>();
 
             services.AddControllersWithViews()
                 .AddNewtonsoftJson()
@@ -48,7 +51,7 @@ namespace GTravel
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitialiser dbInitialiser)
         {
             if (env.IsDevelopment())
             {
@@ -65,6 +68,8 @@ namespace GTravel
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            dbInitialiser.Initialise();
 
             app.UseAuthentication();
             app.UseAuthorization();
