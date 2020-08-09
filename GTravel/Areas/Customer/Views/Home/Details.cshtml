@@ -16,7 +16,7 @@
         </div>
         <br />
 
-        <div class="row">
+        <div class="row ">
             <div class="col-7">
                 <img src="@Model.ImageUrl" class="rounded img-fluid" />
             </div>
@@ -24,12 +24,11 @@
             <div class="col-4">
                 <div class="card ">
                     <div class="card-header bg-primary text-light">Trip OverView</div>
-                    <div class="card-body">
+                    <div class="card-body mb-2">
                         <div><strong>Duration :</strong>&nbsp; @Model.TourDurationDays Days</div>
                         <div><strong>Departure City:</strong>&nbsp; Sydney</div>
                         <div><strong>Arrival City: </strong>&nbsp;Brisbane</div>
-                        <div><strong>Price (AUD$) :</strong>&nbsp; @Model.RRP.ToString("c")</div>
-                        <br />
+                        <div><strong>Price (AUD$) :</strong>&nbsp; @Model.RRP.ToString("c")</div>                       
 
                     </div>
                     <a asp-action="Create" asp-controller="Order" asp-route-tourId="@Model.Id" class="btn card-footer btn-primary " style="width:100%; ">
@@ -39,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <br />sesame
+       
         <hr />
         <div class="row">
             <div class="col-12 py-2">

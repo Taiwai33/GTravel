@@ -21,6 +21,7 @@ namespace GTravel.Domain.Data
         public DbSet<Meal> Meals { get; set; }
         public DbSet<Customer> Customers{ get; set; }
         public DbSet<Order> Orders{ get; set; }
+        public DbSet<Employee> Employees{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -55,6 +56,8 @@ namespace GTravel.Domain.Data
 
             builder.Entity<Order>().Property(p => p.SalePrice).HasColumnType("decimal(7,2)");
 
+            builder.Entity<Employee>().Property(e => e.FirstName).IsRequired();
+            builder.Entity<Employee>().Property(e => e.LastName).IsRequired();
 
 
 

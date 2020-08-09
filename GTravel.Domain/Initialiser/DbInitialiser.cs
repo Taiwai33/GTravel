@@ -40,15 +40,21 @@ namespace GTravel.Domain.Initialiser
 
             _roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();//makes sure this executes before proceceding with anything else
             _roleManager.CreateAsync(new IdentityRole("Manager")).GetAwaiter().GetResult();
-            _roleManager.CreateAsync(new IdentityRole("Customer")).GetAwaiter().GetResult();
 
-            _userManager.CreateAsync(new IdentityUser        //can also use IDENTITYUSER or applicationUser
+            _userManager.CreateAsync(new Employee        //can also use IDENTITYUSER or applicationUser
             {
-                UserName = "admin@gmail.com",
+                UserName = "Admin",
                 Email = "admin@gmail.com",
+                FirstName = "Admin",
+                LastName = "Admin",
+                City = "Sydney",
+                State = "NSW",
+                PostCode = "2049",
+                StreetAddress ="123 Queen Street",
+                DOB = new DateTime(1992,16,09), 
                 EmailConfirmed = true,
                 //can set other properties, this is for the initial setup
-            }, "Abc123!").GetAwaiter().GetResult();
+            }, "abcABC123!").GetAwaiter().GetResult();
 
             IdentityUser user = _db.Users.Where(u => u.Email == "admin@gmail.com").FirstOrDefault();
             _userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult(); //single user obj so make sure it is role not roles

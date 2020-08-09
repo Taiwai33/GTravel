@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GTravel.Domain.Data;
 using GTravel.Domain.Initialiser;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace GTravel
 {
@@ -42,6 +44,7 @@ namespace GTravel
                 o.Cookie.IsEssential = true;
             });
 
+           
             services.AddScoped<IDbInitialiser, DbInitialiser>();
 
             services.AddControllersWithViews()

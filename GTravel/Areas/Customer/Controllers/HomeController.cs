@@ -67,11 +67,7 @@ namespace GTravel.Controllers
                     .Where(p => p.TourCities.Any(pc => pc.City.State == state))
                     .ToList();
 
-
-
             return View(tours);
-
-
         }
     }
 }

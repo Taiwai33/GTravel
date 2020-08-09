@@ -3,52 +3,75 @@
 
 
 @{
-    var title = $"{ViewBag.state} Tours";
+    var state = ViewBag.state;
+    var title = $"{state} Tours";
 }
-    <nav aria-label="breadcrumb mt-3">
-        <ol class="breadcrumb bg-transparent">
-            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">@title</li>
-        </ol>
-    </nav>
+<nav aria-label="breadcrumb mt-3">
+    <ol class="breadcrumb bg-transparent">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@title</li>
+    </ol>
+</nav>
 <div class="row container pb-3 backgroundWhite">
     <div class="col-12">
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center mt-3">
             <h3 class=" text-primary"><b>@title</b></h3>
         </div>
-        <div class="col-12 ">
-            <div class="row my-3 ">
-                @foreach (var tour in Model)
-                {
-                    <div class="col-lg-4 col-xl-4 col-md-6 pb-4 card-deck">
-                        <div class="card">
-                            <img src="@tour.ImageUrl" class="card-img-top" />
-                            <div class="pl-2 pt-2 ">
-                                <h6 class="card-title text-primary ">
-                                    <strong>@tour.Name </strong>
-                                    <br /><small> Departs Sydney</small>
-                                </h6>
+        @if (Model.Count() > 0)
+        {
 
-                            </div>
-                            <div class="card-body p-1">
-                                <div class="row col-12 mb-2">
-                                    <span style="color:#9f9f9f; line-height:1;"><small>@Html.Raw(tour.BriefDescription)</small> </span>
+            <div class="col-12 ">
+
+                <div class="row my-3 ">
+                    @foreach (var tour in Model)
+                    {
+                        <div class="col-lg-4 col-xl-4 col-md-6 pb-4 card-deck">
+                            <div class="card">
+                                <img src="@tour.ImageUrl" class="card-img-top" />
+                                <div class="pl-2 pt-2 ">
+                                    <h6 class="card-title text-primary ">
+                                        <strong>@tour.Name </strong>
+                                        <br /><small> Departs Sydney</small>
+                                    </h6>
+
                                 </div>
+                                <div class="card-body p-1">
+                                    <div class="row col-12 mb-2">
+                                        <span style="color:#9f9f9f; line-height:1;"><small>@Html.Raw(tour.BriefDescription)</small> </span>
+                                    </div>
 
-                            </div>
-                            <div class="row m-0 card-footer p-0">
-                                <div class="row col-12 text-center">
-                                    <small><strong>@tour.TourDurationDays Days from $@tour.RRP pp </strong></small>
                                 </div>
-                                <a asp-action="Details" class="btn btn-info btn-sm col " asp-route-tourId="@tour.Id">More Details</a>
+                                <div class="row m-0 card-footer p-0">
+                                    <div class="row col-12 text-center">
+                                        <small><strong>@tour.TourDurationDays Days from $@tour.RRP pp </strong></small>
+                                    </div>
+                                    <a asp-action="Details" class="btn btn-info btn-sm col " asp-route-tourId="@tour.Id">More Details</a>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                }
+                    }
+                </div>
             </div>
-        </div>
+
+        }
+        else
+        {
+            var stateImage = $"{state}.jpg";
+            <div class="mt-5 row text-center">
+                <div class="w-50 mx-auto mb-3">
+                    <img src="~/Images/@stateImage" class="img-fluid" height="30" />
+                </div>
+
+                <p style="font-size:20px;">
+                    We are currently working on some new and exciting tours for @state, take a look
+                    at some of our popular tours currently available interstate <a asp-action="index">here</a>
+                </p>
+
+            </div>
+
+        }
 
     </div>
 </div>

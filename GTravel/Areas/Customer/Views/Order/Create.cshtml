@@ -101,7 +101,7 @@
                         </h4>
                         <div class="list-group-item justify-content-between bg-light">
                             <div>@Model.Tour.Name Tour</div>
-                            <div class="offset-lg-1"><small>Departure City: Sydney</small></div>
+                            <div class="offset-lg-1"><small>Departure City: @Model.Tour.DepartureLocation</small></div>
                             <div class="offset-lg-1"><small>Departure Date: 30/10/2021</small></div>
                             <hr />
                             <text class="text-primary">Total (AUD)</text>
@@ -114,7 +114,7 @@
         </div>
         <div class="card-footer">
             <div class=" col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-7 text-right">
-                <button type="submit" asp-route-tourId="@Model.Tour.Id" class="btn btn-success form-control">Place Order</button>
+                <button type="submit" asp-route-tourId="@Model.Tour.Id" class="btn btn-success form-control">Confirm Booking</button>
             </div>
         </div>
     </div>
