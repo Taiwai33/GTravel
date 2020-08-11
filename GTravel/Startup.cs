@@ -42,7 +42,8 @@ namespace GTravel
                 o.IdleTimeout = TimeSpan.FromMinutes(30);
                 o.Cookie.HttpOnly = true;
                 o.Cookie.IsEssential = true;
-            });
+                
+            });           
 
            
             services.AddScoped<IDbInitialiser, DbInitialiser>();
@@ -79,11 +80,13 @@ namespace GTravel
 
             app.UseEndpoints(endpoints =>
             {
+                
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
-            });
+            }); 
+            
         }
     }
 }

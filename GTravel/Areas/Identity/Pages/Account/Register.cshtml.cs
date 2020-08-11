@@ -94,7 +94,7 @@ namespace GTravel.Areas.Identity.Pages.Account
             {
                // var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
 
-                var user = new Employee
+                var user = new Employee()
                 {
                     UserName = Input.FirstName,
                     Email = Input.Email,

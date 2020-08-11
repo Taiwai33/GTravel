@@ -51,7 +51,8 @@ namespace GTravel.Areas.Customer.Controllers
                     {
                         TourId = tourId,
                         CustomerId = customer.Id,
-                        SalePrice = dbTour.RRP
+                        SalePrice = dbTour.RRP,
+                        OrderConfirmed = false
                     };
 
                     _db.Orders.Add(order);

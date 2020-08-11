@@ -1,0 +1,81 @@
+﻿@model GTravel.Domain.ViewModels.AdminHomeIndexViewModel
+@{
+    var title = $"Welcome back!<br />Here are all current tasks...";
+}
+
+
+<div class="row container pb-3 backgroundWhite">
+    <div class="col-12">
+        @if (Model.Tours.Count() > 0 || Model.Orders.Count() > 0)
+        {
+            <p class="row mx-auto">
+                <h4 class=" text-primary"><b>Welcome Back!</b></h4>
+                <h5>Here are all current tasks...</h5>
+                <hr />
+            </p>
+            @if (Model.Orders.Count() > 0)
+            {
+                <div class="row pt-4">
+                    <h3 class="col-12">Pending Orders:</h3>
+                    <div class="card-deck pt-4">
+                        @foreach (var order in Model.Orders)
+                        {
+                            <div class="card border-success" style="width: 22rem;">
+                                <div class="card-header bg-success">
+                                    <h5 class=" font-weight-bolder text-light">Customer Id: @order.CustomerId</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="p-0" style="list-style:none;">
+                                        <li><strong>Contact Name: </strong> @order.Customer.FirstName @order.Customer.LastName</li>
+                                        <li><strong>Tour Booked: </strong> @order.Tour.Name</li>
+                                        <li><strong>Preferred Method of Contact: </strong>@order.Customer.Email</li>
+
+                                    </ul>
+                                    <a asp-action="OrderDetails" asp-controller="Home" asp-route-orderId="@order.Id">View all info...</a>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            @if (Model.Tours.Count() > 0)
+            {
+                <div class="row pt-4">
+                    <h3 class="col-12 ">Pending Tours:</h3>
+                    <div class="card-deck pt-4">
+                        @foreach (var tour in Model.Tours)
+                        {
+                            <div class="card border-primary" style="width: 22rem;">
+                                <div class="card-header bg-primary">
+                                    <h5 class=" font-weight-bolder text-light">Id: @tour.Id</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="p-0" style="list-style:none;">
+                                        <li><strong>Name: </strong> @tour.Name</li>
+                                        <li><strong>Departure Location: </strong> @tour.DepartureLocation</li>
+                                        <li><strong>Current Status: </strong>@tour.Status</li>
+
+                                    </ul>
+                                    <a asp-action="Details" asp-controller="Tour" asp-route-id="@tour.Id">View all info...</a>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+        }
+        else
+        {
+            <div class="mt-5 row text-center">
+                <h3>
+                    Great work you are currently up to date!
+                </h3>
+            </div>
+
+        }
+    </div>   
+</div>
+

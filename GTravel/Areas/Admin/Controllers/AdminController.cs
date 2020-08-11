@@ -18,6 +18,7 @@ namespace GTravel.Areas.Admin.Controllers
         {
             _db = db;
         }
+              
         
     }
 }

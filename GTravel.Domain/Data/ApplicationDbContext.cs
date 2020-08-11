@@ -39,7 +39,7 @@ namespace GTravel.Domain.Data
 
             builder.Entity<Tour>().Property(t => t.Name).IsRequired();
             builder.Entity<Tour>().Property(t => t.DepartureLocation).IsRequired();
-            builder.Entity<Tour>().Property(t => t.BriefDescription).IsRequired().HasMaxLength(50);
+            builder.Entity<Tour>().Property(t => t.BriefDescription).IsRequired().HasMaxLength(150);
             builder.Entity<Tour>().Property(t => t.FullDescription).IsRequired();
             builder.Entity<Tour>().Property(t => t.RRP).HasColumnType("decimal(7,2)");
             builder.Entity<Tour>().Property(p => p.ImageUrl).HasColumnType("nvarchar(max)").HasColumnName("Image");
