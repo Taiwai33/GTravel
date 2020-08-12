@@ -6,13 +6,13 @@
 
 <div class="row container pb-3 backgroundWhite">
     <div class="col-12">
-        @if (Model.Tours.Count() > 0 || Model.Orders.Count() > 0)
-        {
             <p class="row mx-auto">
                 <h4 class=" text-primary"><b>Welcome Back!</b></h4>
                 <h5>Here are all current tasks...</h5>
                 <hr />
             </p>
+        @if (Model.Tours.Count() > 0 || Model.Orders.Count() > 0)
+        {
             @if (Model.Orders.Count() > 0)
             {
                 <div class="row pt-4">
@@ -69,7 +69,7 @@
         }
         else
         {
-            <div class="mt-5 row text-center">
+            <div class="mt-5 row justify-content-center">
                 <h3>
                     Great work you are currently up to date!
                 </h3>
