@@ -15,7 +15,7 @@ function loadDataTable() {
         },
         "columns": [
             { "data": "name", "width": "40%" },
-            { "data": "state", "width": "10%" },
+            {"data": "state","width": "10%"},
             { "data": "postCode", "width": "10%" },
             {
                 "data": "id",

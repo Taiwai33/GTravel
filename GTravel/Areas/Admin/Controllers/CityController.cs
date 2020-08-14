@@ -46,12 +46,13 @@ namespace GTravel.Areas.Admin.Controllers
                 if (id == null)
                 {
                     city.Name = ConvertToCamelCase(city.Name);
+                    city.State = Enum.GetName(typeof(SD.States), int.Parse(city.State));
                     _db.Cities.Add(city);
                 }
                 else {
                     var dbCity = _db.Cities.FirstOrDefault(c => c.Id == id);
                                         
-                    dbCity.State = city.State;
+                    dbCity.State = Enum.GetName(typeof(SD.States),int.Parse(city.State));
                     dbCity.PostCode = city.PostCode;
                     dbCity.Latitude = city.Latitude;
                     dbCity.Longitude = city.Longitude;
@@ -74,7 +75,6 @@ namespace GTravel.Areas.Admin.Controllers
         public IActionResult GetAll()
         {
              
-
             return Json(new { data = _db.Cities.ToList() });    
         
         

@@ -25,11 +25,9 @@ namespace GTravel.Controllers
 
         public IActionResult Index()
         {
-            HomeIndexViewModel homeIndexVM = new HomeIndexViewModel()
-            {
-                Tours = _db.Tours.Where(t => t.StatusId == 2).ToList()
-            };
-            return View(homeIndexVM);
+            var Tours = _db.Tours.Where(t => t.StatusId == 2).ToList();
+           
+            return View(Tours);
         }
 
         public IActionResult Details(int tourId)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace GTravel.Domain
 {
@@ -7,7 +8,7 @@ namespace GTravel.Domain
     {
         public int Id { get; set; }
         public int PostCode { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; }     
         public string State { get; set; }
         public float Longitude { get; set; }
         public float Latitude { get; set; }

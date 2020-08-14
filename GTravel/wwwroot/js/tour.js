@@ -26,9 +26,7 @@ function loadDataTable() {
             {
                 "data": "status",
                 "render": function (data) {
-                    return `<div></div>
-
-                    `
+                    return `<div>${StatusDisplay(data)} </div>`;
 
                 },
                 "width": "10%"
@@ -45,6 +43,7 @@ function loadDataTable() {
                             <i class="far fa-plus-square"></i> Meals
                                 </a> 
                                 &nbsp;
+    
                                  <a onClick=Publish("/Admin/tour/Publish/${data}") class='btn btn-success text-white' style='cursor:pointer; width:85px;'>
                             Publish
                                 </a>
@@ -115,4 +114,26 @@ function Publish(url) {
             }
         });
     });
+}
+
+function StatusDisplay(statusId) {
+    var statusString;
+
+    switch (statusId) {
+        case 1:
+            statusString = "Draft";
+            break;
+        case 2:
+            statusString = "Active";
+            break;
+        case 3:
+            statusString = "Archive";
+            break;
+
+        default:
+            statusString = "Status Currently unavailable";
+    }
+
+    return statusString;
+
 }

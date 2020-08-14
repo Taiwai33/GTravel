@@ -1,5 +1,5 @@
-﻿@model GTravel.Domain.ViewModels.HomeIndexViewModel
-
+﻿@model IEnumerable<GTravel.Domain.Tour>
+@using GTravel.Domain
 
 @{
     var mainTitle = "Most Popular Tours";
@@ -22,7 +22,7 @@
         </div>
         <div class="col-12 ">
             <div class="row my-3 ">
-                @foreach (var tour in Model.Tours)
+                @foreach (var tour in Model)
                 {
                     <div class="col-lg-4 col-xl-4 col-md-6 pb-4 card-deck">
                         <div class="card mt-sm-2"  >
@@ -65,7 +65,7 @@
 
         <div class="col-12 ">
             <div class="row my-3 ">
-                @foreach (var state in Model.States)
+                @foreach (var state in Enum.GetValues(typeof(SD.States)))
                 {
                     var stateImage = $"{state}.jpg";
 

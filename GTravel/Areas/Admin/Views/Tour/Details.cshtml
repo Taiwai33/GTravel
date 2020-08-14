@@ -69,7 +69,7 @@
                 <ul>
                     @foreach (var city in Model.TourCities)
                     {
-                        <li>@city.City.Name  @city.City.State
+                        <li>@city.City.Name  @city.City.State.Substring(0, city.City.State.Length-1)
                     
                         
                         </li>

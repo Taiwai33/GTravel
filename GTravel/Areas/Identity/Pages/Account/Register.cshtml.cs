@@ -113,15 +113,15 @@ namespace GTravel.Areas.Identity.Pages.Account
                 {
                     string role = Request.Form["rdUserRole"].ToString();
 
-                    if (role == "Admin")
+                    if (role == SD.Admin)
                     {
-                        await _userManager.AddToRoleAsync(user, "Admin");
+                        await _userManager.AddToRoleAsync(user, SD.Admin);
                     }
                     else
                     {
-                        if (role == "Manager")
+                        if (role == SD.Manager)
                         {
-                            await _userManager.AddToRoleAsync(user, "Manager");
+                            await _userManager.AddToRoleAsync(user, SD.Manager);
                         }
 
                     }

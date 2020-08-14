@@ -40,6 +40,7 @@ namespace GTravel.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
+                customer.State = Enum.GetName(typeof(SD.States), int.Parse(customer.State));
                 _db.Customers.Add(customer);
                 _db.SaveChanges();
 

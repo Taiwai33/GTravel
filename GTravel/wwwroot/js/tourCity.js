@@ -18,6 +18,7 @@ function loadDataTable() {
         "columns": [
             { "data": "city", "width": "20%" },
             { "data": "state", "width": "10%" },
+            
             {
                 "data": "tourCityId",
                 "render": function (data) {

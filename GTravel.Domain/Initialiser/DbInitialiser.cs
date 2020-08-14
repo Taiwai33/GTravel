@@ -36,10 +36,10 @@ namespace GTravel.Domain.Initialiser
                 Console.WriteLine(ex.Message);
             }
 
-            if (_db.Roles.Any(r => r.Name == "Admin")) return;
+            if (_db.Roles.Any(r => r.Name == SD.Admin)) return;
 
-            _roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();//makes sure this executes before proceceding with anything else
-            _roleManager.CreateAsync(new IdentityRole("Manager")).GetAwaiter().GetResult();
+            _roleManager.CreateAsync(new IdentityRole(SD.Admin)).GetAwaiter().GetResult();//makes sure this executes before proceceding with anything else
+            _roleManager.CreateAsync(new IdentityRole(SD.Manager)).GetAwaiter().GetResult();
 
 
 
@@ -61,7 +61,7 @@ namespace GTravel.Domain.Initialiser
             }, "Abc123!Abc123!").GetAwaiter().GetResult();
 
             IdentityUser user = _db.Users.Where(u => u.Email == "admin@gmail.com").FirstOrDefault();
-            _userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult(); //single user obj so make sure it is role not roles
+            _userManager.AddToRoleAsync(user, SD.Admin).GetAwaiter().GetResult(); //single user obj so make sure it is role not roles
 
 
         }

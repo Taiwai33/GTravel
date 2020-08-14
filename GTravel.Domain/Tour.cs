@@ -4,7 +4,6 @@ using System.Text;
 
 namespace GTravel.Domain
 {
-    public enum TourStatus { Draft = 1, Active = 2, Cancelled = 3 }
     public class Tour
     {
         public int Id { get; set; }
@@ -18,8 +17,7 @@ namespace GTravel.Domain
         public string ImageUrl { get; set; }
         public int MaxCapacity { get; set; }
         public int StatusId { get; set; }
-        public TourStatus Status { get => (TourStatus)StatusId; }
-
+        public SD.TourStatus Status{ get => (SD.TourStatus)StatusId; }
         public Meal Meal { get; set; }
         public ICollection<TourCity> TourCities { get; set; } = new List<TourCity>();
 

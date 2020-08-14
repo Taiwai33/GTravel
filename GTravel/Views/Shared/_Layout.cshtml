@@ -1,4 +1,4 @@
-﻿
+﻿@using GTravel.Domain
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +18,7 @@
                 @{
                     var area = "Customer";
                     var backgroundFill = "bg-transparent";
-                    if (User.IsInRole("Admin") || User.IsInRole("Manager")) { area = "Admin"; backgroundFill = "bg-primary"; }
+                    if (User.IsInRole(SD.Admin) || User.IsInRole(SD.Manager)) { area = "Admin"; backgroundFill = "bg-primary"; }
                 }
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm  navbar-light @backgroundFill box-shadow">
             <div class="container ">
@@ -34,7 +34,7 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1 ">
 
-                        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        @if (User.IsInRole(SD.Admin) || User.IsInRole(SD.Manager))
                         {
                             <li class="nav-item text-light">
                                 <a class="nav-link home text-light" asp-area="Admin" asp-controller="Tour" asp-action="Index">Tours</a>
@@ -46,7 +46,7 @@
                                 <a class="nav-link home text-light" asp-area="Admin" asp-controller="City" asp-action="Index">Cities</a>
                             </li>
 
-                            @if (User.IsInRole("Admin"))
+                            @if (User.IsInRole(SD.Admin))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link home text-light" asp-area="Admin" asp-controller="Employee" asp-action="Index">Employees</a>
@@ -76,11 +76,7 @@
 
                                 </div>
                             </li>
-                            @*<li class="nav-item">
-                                <a class="nav-link home" asp-controller="Home" asp-action="ContactUs">Contact</a>
-                            </li>*@
-
-
+                            
                         }
                     </ul>
                 </div>
@@ -94,23 +90,22 @@
         }
     </header>
     <br />
-    <div class="container my-3">
-        <main role="main" class="pb-3 pl-3 shadow ">
+    <div class="container my-3 pb-5 bg-white border shadow">
+        <main role="main" class="pb-5 pl-3 ">
 
             @RenderBody()
-            <br />
         </main>
+        <span class="row col-12 " style="height:150px;"></span>
     </div>
-    <br />
-    <br />
     <footer class="border-top footer text-muted">
         <div class="container">
-            <div class="row col-12">
+            <div class="row col-12 justify-content-center pt-3">
                 <a class="btn-floating btn-lg btn-fb" role="button"><i class="fab fa-facebook-f"></i></a>
                 <a class="btn-floating btn-lg btn-ins" role="button"><i class="fab fa-instagram"></i></a>
                 <a class="btn-floating btn-lg btn-tw" role="button"><i class="fab fa-twitter"></i></a>
             </div>
-            &copy; 2020 - GTravel - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row col-12  justify-content-center">&copy; 2020 - GTravel - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></div>
+
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
