@@ -1,5 +1,6 @@
 # GTravel
 
+(Visual Studio/SSMS)
 -login with seeded profile
  
  -create cities (TODO: City data to be seeded)
